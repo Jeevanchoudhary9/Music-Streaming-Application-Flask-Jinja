@@ -1,0 +1,172 @@
+{% extends 'layout/layout.html' %}
+{%block title%}User Dashboard{%endblock%}
+{% block content %}
+
+    {%if songs==[]%}
+    <h2 class="text-sm tracking-widest title-font mb-1 font-medium text-center" style="margin-top:200px;">Songs will be Available Soon... </h2>
+    {%endif%}
+
+
+
+
+
+<div class="py-14">
+<!-- Recommanded Tracks -->
+{%if songs!=[]%}
+<div class="container px-0 mx-auto">
+    <div class="component1 border-2 border-gray-200 rounded-lg p-4" style="margin-bottom:20px">
+        <div class="text-2xl text-gray-900 mb-2" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="font-bold text-lg">Recommanded Tracks</div>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" style="height:42px;text-align:center;align-items:center;padding: 8px 50px;">
+                <a class="font-bold text-lg" href="{{url_for('recommendations')}}" style="font-size:14px; display: inline-block; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Show More</a>
+            </button>
+        </div>
+        {%if songs==[]%}
+        <h2 class="text-sm tracking-widest title-font mb-1 font-medium text-center" style="margin-top:20px;">No Songs Added in this Playlist</h2>
+        {%endif%}
+
+        
+        <div class="overflow-x-auto">
+            <div class="flex flex-no-wrap -mx-2">
+                {% for song in songs %}
+                <div class="p-3">
+                    <div class="border-2 border-gray-200 px-4 py-6 pt-20 rounded-lg relative h-full w-full" style="height: 150px; width: 250px;">
+                        <h2 class="text-sm tracking-widest title-font font-medium absolute p-1 top-0 h-full w-full left-1/2 transform -translate-x-1/2 mt-2 text-center">{{song.songname}}</h2>
+                        <!-- text at center -->
+                        <!-- out of stock label  -->
+                        
+                        <div class="relative top-2 flex">
+                            
+                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 mr-2 relative left-5 rounded" style="background-color: transparent; border: 2px solid #87CEEB; color: #87CEEB; padding: 8px 38px;" onmouseover="this.style.backgroundColor='#87CEEB'; this.querySelector('a').style.color = 'white';" onmouseout="this.style.backgroundColor='transparent'; this.querySelector('a').style.color = '#87CEEB';">
+                                <a href="{{url_for('read_lyrics',songid=song.songid)}}" style="text-decoration: none; color: #87CEEB;">Read Lyrics</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+
+    </div>
+</div>
+{%endif%}
+
+<!-- Your Playlists -->
+<div class="container px-0 mx-auto">
+    <div class="component1 border-2 border-gray-200 rounded-lg p-4" style="margin-bottom:20px">
+        <div class="text-2xl text-gray-900 mb-2" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="font-bold text-lg">Your Playlists</div>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" style="height:42px;text-align:center;align-items:center;padding: 8px 20px;">
+                <a class="font-bold text-lg" href="{{url_for('create_playlist')}}" style="font-size:14px; display: inline-block; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Create New Playlist</a>
+            </button>
+        </div>
+        {%if playlist==[]%}
+            <h2 class="text-sm tracking-widest title-font mb-1 font-medium text-center" style="margin-top:20px;">No Playlist Created Till Now!</h2>
+        {%endif%}
+        <div class="overflow-x-auto">
+            <div class="flex flex-no-wrap -mx-2">
+                {%for playlist in playlist_distinct%}
+                <div class="p-3">
+                    <div class="border-2 border-gray-200 px-4 py-6 pt-20 rounded-lg relative h-full w-full" style="height: 150px; width: 250px;">
+                        {%if playlist[1]|length<25%}
+                        <h2 class="text-sm tracking-widest title-font font-medium absolute p-1 top-0 h-full w-full left-1/2 transform -translate-x-1/2 mt-2  text-center">{{playlist[1]}}</h2>
+                        {%else%}
+                        <h2 class="text-sm tracking-widest title-font font-medium absolute p-1 top-0 h-full w-full left-1/2 transform -translate-x-1/2 mt-2  text-center">{{playlist[1][:25]}}...</h2>
+                        {%endif%}
+
+                        <!-- text at center -->
+                        <!-- out of stock label  -->
+                        <div class="relative top-2 flex">
+                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 mr-2 relative left-5 rounded" style="background-color: transparent; border: 2px solid #87CEEB; color: #87CEEB; padding: 8px 38px;" onmouseover="this.style.backgroundColor='#87CEEB'; this.querySelector('a').style.color = 'white';" onmouseout="this.style.backgroundColor='transparent'; this.querySelector('a').style.color = '#87CEEB';">
+                                <a href="{{url_for('view_playlist',playlistid=playlist[0])}}" style="text-decoration: none; color: #87CEEB;">View Tracks</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Genre 1 -->
+{%for genre in genres%}
+<div class="container px-0 mx-auto">
+    <div class="component1 border-2 border-gray-200 rounded-lg p-4" style="margin-bottom:20px">
+        <div class="text-2xl text-gray-900 mb-2" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="font-bold text-lg">Genre: {{genres[genre][0]['genrename']}}</div>
+            
+        </div>
+        <!-- <h2 class="text-sm tracking-widest title-font mb-1 font-medium text-center" style="margin-top:20px;">No Songs Added in this Playlist</h2> -->
+        <div class="overflow-x-auto">
+            <div class="flex flex-no-wrap -mx-2">
+                {%for songs in genres[genre]%}
+                    {%if songs['songname']!='None'%}
+                        {% set count = 1 %}
+                        <div class="p-3">
+                            <div class="border-2 border-gray-200 px-4 py-6 pt-20 rounded-lg relative h-full w-full" style="height: 150px; width: 250px;">
+
+                                {%if songs['songname']|length>25%}
+                                <h2 class="text-sm tracking-widest title-font font-medium absolute p-1 top-0 h-full w-full left-1/2 transform -translate-x-1/2 mt-2 text-center">{{songs['songname'][:22]}}...</h2>
+                                {%else%}
+                                <h2 class="text-sm tracking-widest title-font font-medium absolute p-1 top-0 h-full w-full left-1/2 transform -translate-x-1/2 mt-2 text-center">{{songs['songname']}}</h2>
+                                {%endif%}
+                                <!-- text at center -->
+                                <!-- out of stock label  -->
+                                <div class="relative top-2 flex">
+                                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 mr-2 relative left-5 rounded" style="background-color: transparent; border: 2px solid #87CEEB; color: #87CEEB; padding: 8px 38px;" onmouseover="this.style.backgroundColor='#87CEEB'; this.querySelector('a').style.color = 'white';" onmouseout="this.style.backgroundColor='transparent'; this.querySelector('a').style.color = '#87CEEB';">
+                                        <a href="{{url_for('read_lyrics',songid=songs['songid'])}}" style="text-decoration: none; color: #87CEEB;">Read Lyrics</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    {%endif%}
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+</div>
+{%endfor%}
+
+
+<!-- Albums 1 -->
+{%for album in albumdic%}
+<div class="container px-0 mx-auto">
+    <div class="component1 border-2 border-gray-200 rounded-lg p-4" style="margin-bottom:20px">
+        <div class="text-2xl text-gray-900 mb-2" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="font-bold text-lg">Album: {{albumdic[album][0]['albumname']}}</div>
+            
+        </div>
+        <!-- <h2 class="text-sm tracking-widest title-font mb-1 font-medium text-center" style="margin-top:20px;">No Songs Added in this Playlist</h2> -->
+        <div class="overflow-x-auto">
+            <div class="flex flex-no-wrap -mx-2">
+                {%for songs in albumdic[album]%}
+                    {%if songs['songname']!='None'%}
+                        {% set count = 1 %}
+                        <div class="p-3">
+                            <div class="border-2 border-gray-200 px-4 py-6 pt-20 rounded-lg relative h-full w-full" style="height: 150px; width: 250px;">
+
+                                {%if songs['songname']|length>25%}
+                                <h2 class="text-sm tracking-widest title-font font-medium absolute p-1 top-0 h-full w-full left-1/2 transform -translate-x-1/2 mt-2 text-center">{{songs['songname'][:22]}}...</h2>
+                                {%else%}
+                                <h2 class="text-sm tracking-widest title-font font-medium absolute p-1 top-0 h-full w-full left-1/2 transform -translate-x-1/2 mt-2 text-center">{{songs['songname']}}</h2>
+                                {%endif%}
+                                <!-- text at center -->
+                                <!-- out of stock label  -->
+                                <div class="relative top-2 flex">
+                                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 mr-2 relative left-5 rounded" style="background-color: transparent; border: 2px solid #87CEEB; color: #87CEEB; padding: 8px 38px;" onmouseover="this.style.backgroundColor='#87CEEB'; this.querySelector('a').style.color = 'white';" onmouseout="this.style.backgroundColor='transparent'; this.querySelector('a').style.color = '#87CEEB';">
+                                        <a href="{{url_for('read_lyrics',songid=songs['songid'])}}" style="text-decoration: none; color: #87CEEB;">Read Lyrics</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    {%endif%}
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+</div>
+{%endfor%}
+</div>
+{% endblock %}

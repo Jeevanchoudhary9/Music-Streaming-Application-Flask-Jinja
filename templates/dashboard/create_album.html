@@ -1,0 +1,33 @@
+{% extends 'layout/layout.html' %}
+{%block title%}Create Album{%endblock%}
+
+{% block content %}
+
+<div class="py-8">
+    <form action="" method="post">
+        <div class="container px-0 mx-auto" style="width: 70vw; height: 70vh;">
+            <div class="container px-5 py-10 mx-auto flex flex-wrap justify-center flex flex-col items-center">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">New Album</h1>
+                        
+                <form class="mb-3 flex w-full max-w-md gap-2">
+                    <input name="albumname" placeholder="Enter Album Name" class="bg-gray-white w-full flex-1 rounded border border-gray-300 px-3 py-2 text-gray-800 placeholder-gray-400 outline-none ring-indigo-300 transition duration-100 focus:ring" required autofocus/>
+                </form>
+            </div>
+            {% for song in songs %}
+            <div class="component1 border-2 border-gray-200 rounded-lg p-4" style="margin-bottom: 20px;" >
+                <label for="song_{{ song.songid }}" class="text-2xl text-gray-900 mb-0 flex justify-between items-center cursor-pointer">
+                    <div class="font-bold text-lg">{{ song.songname }}</div>
+                    <input type="checkbox" id="song_{{ song.songid }}" name="selected_songs" value="{{ song.songid }}" class="h-8 w-8">
+                </label>
+            </div>
+            
+            {% endfor %}
+            <div style="display: flex; justify-content: center;">
+                <button type="submit" class="inline-block rounded bg-indigo-500 px-8 py-2 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Create Album</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

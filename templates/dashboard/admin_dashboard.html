@@ -1,0 +1,124 @@
+{%extends 'layout/layout_admin.html'%}
+{%block title%}Admin Dashboard{%endblock%}
+{%block content%}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<div class="flex w-full h-screen" style="max-height:93vh;">
+    <!-- Box 1 -->
+    <div class="w-2/6 h-full flex flex-col max-w-screen ">
+        <div class=" h-full flex flex-col ">
+            <!-- Box 1.1 -->
+            <div class="h-1/2  max-w-full flex justify-center items-center ">
+                <!-- Content -->
+                <div class="component1 border-2 border-gray-200 rounded-lg p-4 w-2/3 h-2/3 my-5 overflow-auto flex flex-col justify-center items-center">
+                    <div class="text-2xl text-gray-900 mb-2">
+                        <div class="font-bold text-lg -mt-20" style="font-size:30px; ">Normal User</div>
+                    </div>
+                    <div class="text-lg" style="font-size:100px; ">{{dic['user_count']}}</div>
+                </div>
+                
+
+            </div>
+            
+            <!-- Box 1.2 -->
+            <div class="h-1/2  max-w-full flex justify-center items-center">
+                <!-- Content -->
+                <div class="component1 border-2 border-gray-200 rounded-lg p-4 w-2/3 h-2/3 my-5 overflow-auto flex flex-col justify-center items-center">
+                    <div class="text-2xl text-gray-900 mb-2">
+                        <div class="font-bold text-lg -mt-20" style="font-size:30px; ">Creators</div>
+                    </div>
+                    <div class=" text-lg" style="font-size:100px; ">{{dic['creator_count']}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Box 2 -->
+    <div class=" w-4/6 h-full flex flex-col max-w-screen mt-20">
+        <!-- Subdivision 2.1 -->
+        <div class="font-bold text-lg" style="font-size:30px; padding-top:30px;">App Performance</div>
+        <div class="h-2/5 flex flex-row -mt-20">
+            <!-- Subdivision 2.1.1 -->
+            <div class="w-1/3  max-w-full flex justify-center items-center">
+                <!-- Content -->
+                <div class="component1 border-2 border-gray-200 rounded-lg p-4 w-4/5 h-2/5 mx-auto my-5 overflow-auto flex flex-col justify-center items-center">
+                    <div class="text-2xl text-gray-900 mb-2">
+                        <div class="font-bold text-lg " style="font-size:30px; ">Tracks</div>
+                    </div>
+                    <div class=" text-lg" style="font-size:30px;">{{dic['track_count']}}</div>
+                </div>
+            </div>
+            <!-- Subdivision 2.1.2 -->
+            <div class="w-1/3 max-w-full flex justify-center items-center">
+                <!-- Content -->
+                <div class="component1 border-2 border-gray-200 rounded-lg p-4 w-4/5 h-2/5 mx-auto my-5 overflow-auto flex flex-col justify-center items-center">
+                    <div class="text-2xl text-gray-900 mb-2">
+                        <div class="font-bold text-lg " style="font-size:30px;">Total Albums</div>
+                    </div>
+                    <div class=" text-lg" style="font-size:30px; ">{{dic['album_count']}}</div>
+                </div>
+            </div>
+            <!-- Subdivision 2.1.3 -->
+            <div class="w-1/3  max-w-full flex justify-center items-center ">
+                <!-- Content -->
+                <div class="component1 border-2 border-gray-200 rounded-lg p-4 w-4/5 h-2/5 mx-auto my-5 overflow-auto flex flex-col justify-center items-center">
+                    <div class="text-2xl text-gray-900 mb-2">
+                        <div class="font-bold text-lg " style="font-size:30px;">Genre</div>
+                    </div>
+                    <div class=" text-lg" style="font-size:30px;">{{dic['genre_count']}}</div>
+                </div>
+            </div>
+        </div>
+        <!-- Subdivision 2.2 -->
+        <div class="font-bold text-lg mb-10" style="font-size:30px;">Various Key Graphs</div>
+        <div class="h-3/5  max-w-full flex justify-center items-center -mt-20 ">
+            <div class="component1 border-2 border-gray-200 rounded-lg p-4 w-6/7 h-4/5 mx-2 my-5 overflow-auto" style="height:40vh;width:100vh">
+                <div class="text-2xl text-gray-900 mb-2" style="display: flex; justify-content: space-between; align-items: center;">
+                    
+                    
+                    <canvas id="songChart" width="400" height="150" style="height:500vh;"></canvas>
+
+                    <script>
+                        // Get song data from Flask passed via Jinja
+                        let songData = {{ song_data | tojson }};
+                        
+                        // Extracting song names and ratings for labels and data
+                        let songNames = songData.map(song => song.name);
+                        let songRatings = songData.map(song => song.rating);
+                        
+                        // Create Chart.js instance
+                        let ctx = document.getElementById('songChart').getContext('2d');
+                        let myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: songNames,
+                                datasets: [{
+                                    label: 'Song Ratings',
+                                    data: songRatings,
+                                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                // Add any additional Chart.js options here
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}

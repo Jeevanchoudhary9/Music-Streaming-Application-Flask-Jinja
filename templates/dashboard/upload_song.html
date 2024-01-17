@@ -1,0 +1,103 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}
+Upload Song
+{% endblock %}
+
+
+
+{% block content %}
+<section class="text-gray-600 body-font relative">
+    <form action="/upload_song" method="post" class="mt-5" enctype="multipart/form-data">
+    <div class="container px-5 py-15 mx-auto">
+      <div class="flex flex-col text-center w-full mb-12">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Upload Song</h1>
+      </div>
+      <div class="lg:w-1/2 md:w-2/3 mx-auto">
+        
+          
+
+            <div class="p-2 w-full">
+                <div class="relative">
+                    <label for="title" class="leading-7 text-sm text-gray-600">Title</label>
+                    <input type="text" id="title" name="title" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required>
+                </div>
+            </div>
+            <div class="p-2 w-full">
+              <div class="relative">
+                <label for="singer" class="leading-7 text-sm text-gray-600">Singer</label>
+                <input type="text" id="singer" name="singer" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required>
+              </div>
+            </div>
+
+              <div class="p-2 w-full">
+                <div class="relative">
+                  <label for="genre" class="leading-7 text-sm text-gray-600">Genre</label>
+                  <select id="genre" name="genre" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-2 px-4 appearance-none leading-6 transition-colors duration-200 ease-in-out" required>
+                    <option value="bollywood">Bollywood</option>
+                    <option value="hip_hop">Hip-Hop</option>
+                    <option value="jazz">Jazz</option>
+                    <option value="classical">Classical</option>
+                    <option value="rock">Rock</option>
+                    <option value="pop">Pop</option>
+                    <option value="country">Country</option>
+                    <option value="folk">Folk</option>
+                    <option value="blues">Blues</option>
+                    <option value="metal">Metal</option>
+                    <option value="reggae">Reggae</option>
+                    <option value="soul">Soul</option>
+                    <option value="techno">Techno</option>
+                    <option value="trance">Trance</option>
+                    <option value="disco">Disco</option>
+                    <!-- Add more options for other units -->
+                  </select>
+                </div>
+              </div>
+
+                <div class="p-2 w-full">
+                  <div class="relative">
+                    <label for="year" class="leading-7 text-sm text-gray-600">Release Year</label>
+                    <input type="number" id="year" name="year" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required>
+                  </div>
+                </div>
+                <div class="p-2 w-full">
+                    <div class="relative">
+                      <label for="song" class="leading-7 text-sm text-gray-600">Song</label>
+                      <input type="file" id="song" name="song" accept=".mp3" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" required>
+                    </div>
+                  </div>
+                <div class="p-2 w-full">
+                  <div class="relative">
+                    <label for="lyrics" class="leading-7 text-sm text-gray-600">Lyrics</label>
+                    <textarea id="text" name="lyrics" id="lyrics" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" required></textarea>
+                    </div>
+                </div>
+                
+            </div>
+          <div class="p-2 w-full">
+            <input type="submit" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" value="Upload" />
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+  </section>
+{% endblock %}
+
+{% block style %}  
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    h1 {
+        margin-top: 60px;
+    }
+    input {
+        margin-top: 5px;
+        align-items: center;
+        flex-direction: column;
+    }
+</style>
+{% endblock %}
