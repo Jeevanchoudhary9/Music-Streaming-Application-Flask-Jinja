@@ -99,8 +99,41 @@ Music Streaming Application/
 ```
 
 ## Screenshots
+![Welcome Page](https://github.com/Jeevanchoudhary9/Music-Streaming-Application-Flask-Jinja-/blob/979632e31a5dbe5d5ee9e4770ce6d415cb9ec482/screenshot/welcome.png)
+*Caption: Welcome Page*
 
-*Include screenshots of your application in action.*
+![User Login](https://github.com/Jeevanchoudhary9/Music-Streaming-Application-Flask-Jinja-/blob/979632e31a5dbe5d5ee9e4770ce6d415cb9ec482/screenshot/userLogin.png)
+*Caption: User Login*
+
+![User Register](https://github.com/Jeevanchoudhary9/Music-Streaming-Application-Flask-Jinja-/blob/979632e31a5dbe5d5ee9e4770ce6d415cb9ec482/screenshot/user%20register.png)
+*Caption: User Register*
+
+![User Dashboard](https://github.com/Jeevanchoudhary9/Music-Streaming-Application-Flask-Jinja-/blob/979632e31a5dbe5d5ee9e4770ce6d415cb9ec482/screenshot/user%20dashboard.png)
+*Caption: User Dashboard*
+
+![Song Search](https://github.com/Jeevanchoudhary9/Music-Streaming-Application-Flask-Jinja-/blob/979632e31a5dbe5d5ee9e4770ce6d415cb9ec482/screenshot/search%20songs.png)
+*Caption: Song Search*
+
+![Playlist Creation](https://github.com/Jeevanchoudhary9/Music-Streaming-Application-Flask-Jinja-/blob/979632e31a5dbe5d5ee9e4770ce6d415cb9ec482/screenshot/playlist.png)
+*Caption: Playlist Creation*
+
+![Songs Lyrics](https://github.com/Jeevanchoudhary9/Music-Streaming-Application-Flask-Jinja-/blob/979632e31a5dbe5d5ee9e4770ce6d415cb9ec482/screenshot/lyrics.png)
+*Caption: Songs Lyrics*
+
+![Creator Dashboard](https://github.com/Jeevanchoudhary9/Music-Streaming-Application-Flask-Jinja-/blob/979632e31a5dbe5d5ee9e4770ce6d415cb9ec482/screenshot/creator%20dashboard.png)
+*Caption: Creator Dashboard*
+
+![Comments](https://github.com/Jeevanchoudhary9/Music-Streaming-Application-Flask-Jinja-/blob/979632e31a5dbe5d5ee9e4770ce6d415cb9ec482/screenshot/comments.png)
+*Caption: Comments*
+
+![Admin Track Management](https://github.com/Jeevanchoudhary9/Music-Streaming-Application-Flask-Jinja-/blob/979632e31a5dbe5d5ee9e4770ce6d415cb9ec482/screenshot/admin%20tracks%20management.png)
+*Caption: Admin Track Management*
+
+![Admin Album Management](https://github.com/Jeevanchoudhary9/Music-Streaming-Application-Flask-Jinja-/blob/979632e31a5dbe5d5ee9e4770ce6d415cb9ec482/screenshot/admin%20Albums%20management.png.png)
+*Caption: Admin Album Management*
+
+![Admin Dashboard](https://github.com/Jeevanchoudhary9/Music-Streaming-Application-Flask-Jinja-/blob/979632e31a5dbe5d5ee9e4770ce6d415cb9ec482/screenshot/admin%20dashboard.png)
+*Caption: Admin Dashboard*
 
 ## Conclusion
 
